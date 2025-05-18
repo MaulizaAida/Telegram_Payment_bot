@@ -126,16 +126,3 @@ Bot menggunakan Ollama dengan model Gemma untuk pemrosesan bahasa natural:
 2. Mengidentifikasi metode pembayaran yang digunakan
 3. Mengkategorikan transaksi secara otomatis
 4. Menentukan tipe transaksi (pemasukan/pengeluaran)
-
-## Kontribusi
-
-Silakan buat issue atau pull request untuk:
-- Perbaikan bug
-- Penambahan fitur baru
-- Peningkatan dokumentasi
-- Optimasi kode
-
-## License
-
-MIT License - Bebas digunakan dan dikembangkan dengan mencantumkan atribusi.
-```﻿# Telegram_Payment_bot
