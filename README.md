@@ -125,3 +125,53 @@ Bot menggunakan Ollama dengan model Gemma untuk pemrosesan bahasa natural:
 2. Mengidentifikasi metode pembayaran yang digunakan
 3. Mengkategorikan transaksi secara otomatis
 4. Menentukan tipe transaksi (pemasukan/pengeluaran)
+
+
+## Deploy di linux beda mesin
+
+Untuk deploy di linux, perlu menjalankan step berikut
+1. Git pull repository
+2. Pastikan go terinstall
+   ```bash
+   sudo snap install go --classic
+   ```
+3. Cek instalasi go
+   ```bash
+   go version
+   ```
+4. masuk ke folder project yang sudah di clone
+5. download dependency
+   ```bash
+   go mod download
+6. Build aplikasi
+   ```bash
+   go build -o telegram_payment_bot .
+7. Test jalankan aplikasi
+   ```bash
+   ./telegram_payment_bot
+8. Daftarkan ke supervisord
+   ```bash
+   sudo nano /etc/supervisor/conf.d/telegram_payment_bot.conf
+   ```
+   ```ini
+      [program:telegram_payment_bot]
+      command=/home/gws/deployment/Telegram_Payment_bot/telegram_payment_bot
+      directory=/home/gws/deployment/Telegram_Payment_bot/
+      autostart=true
+      autorestart=true
+      user=gws
+      ; Log files for your application's output
+      stdout_logfile=/home/gws/deployment/Telegram_Payment_bot/log/telegram_payment_bot.out.log
+      stderr_logfile=/home/gws/deployment/Telegram_Payment_bot/log/telegram_payment_bot.err.log
+      ; If your application uses an .env file and loads it (like with godotenv),
+      ; ensure the .env file is in the 'directory' specified above.
+      ; Alternatively, you can set environment variables directly here:
+      ; environment=TELEGRAM_TOKEN="your_token_here",OTHER_VAR="value"
+      stopsignal=INT ; Sends SIGINT (Ctrl+C) for graceful shutdown, common for Go apps
+   ```
+   ```bash 
+      sudo supervisorctl reread
+      sudo supervisorctl update
+      sudo supervisorctl start telegram_payment_bot
+      sudo supervisorctl status
+   ```
