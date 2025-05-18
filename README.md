@@ -1,5 +1,3 @@
-Here's the complete README.md with improved descriptions throughout:
-
 ```markdown:d:\Project\fullstackapi\backend\telegram-history-bot\README.md
 # Telegram Finance Bot
 
