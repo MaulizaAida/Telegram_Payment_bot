@@ -58,13 +58,13 @@ Sekarang, analisis input berikut dan balas hanya dengan JSON tanpa kode blok:
 
 func CallOllama(prompt string) (string, error) {
 	payload := map[string]interface{}{
-		"model":  "gemma3:4b",
+		"model":  "gemma3:1b",
 		"prompt": prompt,
 		"stream": false,
 	}
 
 	body, _ := json.Marshal(payload)
-	client := &http.Client{Timeout: 15 * time.Second}
+	client := &http.Client{Timeout: 120 * time.Second}
 
 	resp, err := client.Post("http://localhost:11434/api/generate", "application/json", bytes.NewBuffer(body))
 	if err != nil {
